@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   get '/projects', to: redirect('/')
 
   resources :tickets
+
+  resources :tags, except: [:show]
 end

@@ -1,3 +1,31 @@
 <% header = link_to(@ticket.project.name, project_path(@ticket.project)) + " &raquo; #{@ticket.name}".html_safe %>
 
 <%= render 'shared/content_title', title: header %>
+
+<div class="container-fluid">
+  <div class="row">
+    <p class="col-sm-10 h4">Description</p>
+    <p class="col-sm-2">
+      <%= link_to 'Edit', edit_ticket_path(@ticket) %> 
+      <%= link_to 'Delete', ticket_path(@ticket), method: :delete, data: { confirm: "Delete this ticket?" } %>  
+    </p>
+  </div>
+  <br>
+  <div class="row">
+    <p class="h6 col-sm-12"><%= @ticket.body %></p>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-sm-12">
+      <% if @ticket.tags.length > 0 %>
+        <strong>Tags: </strong>
+        <%= parse_tags(@ticket.tags) %>
+      <% else %>
+        No tags currently. Would you like to <%= link_to "add one?", new_tag_path(ticket: @ticket.id) %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<br>
+
