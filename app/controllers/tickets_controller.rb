@@ -1,6 +1,7 @@
 class TicketsController < ApplicationController
   before_action :set_ticket, only: [:show, :edit, :update, :destroy]
   before_action :set_projects, :set_statuses, :set_tags, only: [:new, :edit]
+  before_action :require_user, except: [:index, :show]
 
   def index
     @tickets = Ticket.all
@@ -11,7 +12,9 @@ class TicketsController < ApplicationController
   end
 
   def create
-    @ticket = Ticket.create(ticket_params)
+    @project = Project.find(params[:ticket][:project_id])
+    @ticket = @project.tickets.build(ticket_params)
+    @ticket.creator = current_user
 
     if @ticket.save
       flash[:notice] = "Your ticket has been created."
@@ -35,7 +38,7 @@ class TicketsController < ApplicationController
   end
 
   def destroy
-    if @ticket.delete
+    if @ticket.destroy
       flash[:notice] = "Your ticket has been deleted."
       redirect_to tickets_path
     else
@@ -46,7 +49,7 @@ class TicketsController < ApplicationController
   private
 
   def ticket_params
-    params.require(:ticket).permit(:name, :body, :status, :project_id, tag_ids: [])
+    params.require(:ticket).permit(:name, :body, :status, :project_id, :assignee, tag_ids: [])
   end
 
   def set_ticket

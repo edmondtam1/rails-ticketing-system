@@ -1,0 +1,23 @@
+<%= render 'shared/content_title', title: title %>
+
+<%= form_with model: @user, local: true do |f| %>
+  <%= render 'shared/errors', obj: @user %>
+
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-control col-sm-4" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :email %>
+    <%= f.text_field :email, class: "form-control col-sm-4" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :password %>
+    <%= f.password_field :password, class: "form-control col-sm-4" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation, class: "form-control col-sm-4"%>
+  </div>
+  <%= f.submit (@user.new_record? ? 'Register' : 'Update profile'), class: 'btn btn-success' %>
+<% end %>

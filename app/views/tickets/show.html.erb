@@ -16,6 +16,10 @@
   </div>
   <br>
   <div class="row">
+    <p class="h6 col-sm-12"><strong>Assigned to:</strong> <%= @ticket.assignee %> </p>
+  </div>
+  <br>
+  <div class="row">
     <div class="col-sm-12">
       <% if @ticket.tags.length > 0 %>
         <strong>Tags: </strong>

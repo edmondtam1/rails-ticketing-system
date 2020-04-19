@@ -1,6 +1,8 @@
 <%= render 'shared/content_title', title: title %>
 
-<%= form_with model: @tag do |f| %>
+
+<%= form_with model: @tag, local: true do |f| %>
+  <%= render 'shared/errors', obj: @tag %>
   <div class="form-group">
     <%= f.label :name %>
     <%= f.text_field :name, class: "form-control" %>
