@@ -5,4 +5,6 @@ Rails.application.routes.draw do
 
   resources :projects, except: [:index]
   get '/projects', to: redirect('/')
+
+  resources :tickets
 end

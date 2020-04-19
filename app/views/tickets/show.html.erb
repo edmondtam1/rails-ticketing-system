@@ -1,0 +1,3 @@
+<% header = link_to(@ticket.project.name, project_path(@ticket.project)) + " &raquo; #{@ticket.name}".html_safe %>
+
+<%= render 'shared/content_title', title: header %>

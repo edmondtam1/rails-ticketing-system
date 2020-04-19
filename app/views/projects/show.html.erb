@@ -3,6 +3,12 @@
 <p><%= @project.description %></p>
 
 <%= link_to 'Edit', edit_project_path(@project) %> 
-<%= link_to 'Delete', project_path(@project), method: :delete, confirm: "Delete this project?" %>
+<%= link_to 'Delete', project_path(@project), method: :delete, data: { confirm: "Delete this project?" } %>
 
 <hr />
+
+<%= render 'tickets/table' %>
+
+<br>
+
+<%= link_to "Add a new ticket", new_ticket_path(project: @project.id) %>

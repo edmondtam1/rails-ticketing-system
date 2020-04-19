@@ -1,0 +1,24 @@
+<%= render 'shared/content_title', title: title %>
+
+
+<%= form_with model: @ticket do |f| %>
+  <% project_id = params[:project] ? params[:project] : @ticket.project_id %>
+
+  <div class="form-group">
+    <%= f.label :project_id %>
+    <%= f.collection_select :project_id,  @projects.all, :id, :name, { selected: project_id }, {class: 'form-control col-sm-3'} %>
+  </div>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :body %>
+    <%= f.text_area :body, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :status %>
+    <%= f.select :status, @statuses.collect {|s| [ s, s ]}, {}, {class: 'form-control col-sm-3'} %>
+  </div>
+  <%= f.submit (@ticket.new_record? ? 'Add ticket' : 'Update ticket'), class: 'btn btn-success' %>
+<% end %>
