@@ -1,0 +1,28 @@
+<%= render 'shared/content_title', title: 'Projects' %>
+
+<table class="span12 container">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th class="number text-center">Open Tickets</th>
+      <th class="number text-center">Total Tickets</th>
+    </tr>
+  </thead>
+  <% @projects.each do |project| %>
+    <tr>
+      <td class="col-sm-4 text-left pl-0">
+        <strong>
+          <%= link_to project.name,  project_path(project) %>
+        </strong>
+        <br>
+        <%= project.description %>
+      </td>
+      <td class="number col-sm-4 text-center">
+        # open tickets
+      </td>
+      <td class="number col-sm-4 text-center">
+        # total tickets
+      </td>
+    </tr>
+  <% end %>
+</table>

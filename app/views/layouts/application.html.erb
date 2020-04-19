@@ -1,15 +1,44 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ticketing</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= yield(:head) %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="bg-light">
+    <section class="container">
+      <header>
+        <div class="navbar row">
+          <div class="navbar-inner">
+            <div class="container">
+              <%= render 'layouts/navigation' %>
+            </div>
+          </div>
+        </div>
+      </header>
+      <br>
+      <div id="main" role="main">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-10">
+              <%= render 'layouts/messages' %>
+              <%= yield %>
+            </div>
+            <div class="col-sm-2">
+              <br>
+            </div>
+          </div>
+          <footer>
+          </footer>
+        </div> <!--! end of .container -->
+      </div> <!--! end of #main -->
+    </section>
   </body>
 </html>

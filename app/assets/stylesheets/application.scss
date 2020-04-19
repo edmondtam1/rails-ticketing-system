@@ -13,3 +13,26 @@
  *= require_tree .
  *= require_self
  */
+
+@import 'bootstrap';
+
+.navbar .nav>li>a.brand {
+  padding-left: 0px;
+}
+
+div.nav_item {
+  margin-left: 25px;
+  float: left;
+}
+
+a.hover {
+  cursor: pointer;
+}
+
+tr {
+  border-bottom: 1px solid #ddd;
+}
+
+td {
+  padding: 0.75em 0.75em 0.75em 0;
+}
