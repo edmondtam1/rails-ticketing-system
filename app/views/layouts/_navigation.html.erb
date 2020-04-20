@@ -9,23 +9,22 @@
 </div>
 
 <div class="btn-group col-sm-1">
-  <%= link_to "Projects", projects_path, class: 'text-primary h5 mx-auto' %>
+  <%= link_to "Projects", projects_path, class: 'btn btn-lg text-primary mx-auto' %>
 </div>
 
 <div class="btn-group col-sm-1">
-  <%= link_to "Tickets", tickets_path, class: 'text-primary h5 mx-auto' %>
+  <%= link_to "Tickets", tickets_path, class: 'btn btn-lg text-primary mx-auto' %>
 </div>
 
 <div class="btn-group col-sm-1">
-  <%= link_to "Tags", tags_path, class: 'text-primary h5 mx-auto' %>
+  <%= link_to "Tags", tags_path, class: 'btn btn-lg text-primary mx-auto' %>
 </div>
 
 <div class="btn-group col-sm-2">
   <% if logged_in? %>
-    <p class="text-white col-sm-6 align-middle mx-auto inline-block">Hey, <%= current_user.name %>!  </p>
-    <br>
-    <%= link_to "Logout", logout_path, class: 'text-success h5 col-sm-6 align-middle mx-auto inline-block' %>
+    <div class="btn text-white">Hey, <%= current_user.name %>!</div>
+    <%= link_to "Logout", logout_path, class: 'btn text-success mx-auto' %>
   <% else %>
-    <%= link_to "Login/Register", login_path, class: 'text-warning h5 mx-auto' %>
+    <%= link_to "Login/Register", login_path, class: 'btn btn-lg text-warning mx-auto' %>
   <% end %>
 </div>

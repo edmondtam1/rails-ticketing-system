@@ -12,7 +12,13 @@ Rails.application.routes.draw do
   resources :projects, except: [:index]
   get '/projects', to: redirect('/')
 
-  resources :tickets
+  resources :tickets do
+    resources :comments, only: [:create, :edit, :update]
+
+    member do
+      get '/comments', to: 'tickets#show'
+    end
+  end
 
   resources :tags, except: [:show]
 

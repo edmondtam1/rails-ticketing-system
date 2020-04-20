@@ -17,4 +17,8 @@ class ApplicationController < ActionController::Base
     flash[:error] = "You must be logged in to do that."
     redirect_back fallback_location: root_path
   end
+
+  def set_statuses
+    @statuses = ["new", "blocked", "in_progress", "fixed"]
+  end
 end

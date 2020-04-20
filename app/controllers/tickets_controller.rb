@@ -1,6 +1,6 @@
 class TicketsController < ApplicationController
   before_action :set_ticket, only: [:show, :edit, :update, :destroy]
-  before_action :set_projects, :set_statuses, :set_tags, only: [:new, :edit]
+  before_action :set_projects, :set_statuses, :set_tags, except: [:index, :destroy]
   before_action :require_user, except: [:index, :show]
 
   def index
@@ -20,11 +20,13 @@ class TicketsController < ApplicationController
       flash[:notice] = "Your ticket has been created."
       redirect_to tickets_path
     else
-      render :back
+      render :new
     end
   end
 
-  def show; end
+  def show
+    @comment = @ticket.comments.new
+  end
 
   def edit; end
 
@@ -33,7 +35,7 @@ class TicketsController < ApplicationController
       flash[:notice] = "The ticket was updated."
       redirect_to ticket_path(@ticket)
     else
-      render :back
+      render :edit
     end
   end
 
@@ -62,9 +64,5 @@ class TicketsController < ApplicationController
 
   def set_projects
     @projects = Project.all
-  end
-
-  def set_statuses
-    @statuses = ["new", "blocked", "in_progress", "fixed"]
   end
 end

@@ -4,7 +4,7 @@
 
 <div class="container-fluid">
   <div class="row">
-    <p class="col-sm-10 h4">Description</p>
+    <p class="col-sm-10 h4">Ticket description</p>
     <p class="col-sm-2">
       <%= link_to 'Edit', edit_ticket_path(@ticket) %> 
       <%= link_to 'Delete', ticket_path(@ticket), method: :delete, data: { confirm: "Delete this ticket?" } %>  
@@ -15,9 +15,6 @@
     <p class="h6 col-sm-12"><%= @ticket.body %></p>
   </div>
   <br>
-  <div class="row">
-    <p class="h6 col-sm-12"><strong>Assigned to:</strong> <%= @ticket.assignee %> </p>
-  </div>
   <br>
   <div class="row">
     <div class="col-sm-12">
@@ -29,6 +26,38 @@
       <% end %>
     </div>
   </div>
+  <br>
+  <div class="row">
+    <table class="col-sm-6">
+      <thead>
+        <th class="col-sm-4">Status</th>
+        <th class="col-sm-4">Creator</th>
+        <th class="col-sm-4">Assignee</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="col-sm-4"><%= @ticket.status %></td>
+          <td class="col-sm-4"><%= @ticket.creator.name %></td>
+          <td class="col-sm-4"><%= @ticket.assignee %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <br>
+  <h4>Comments</h4>
+  <hr>
+  <% if @ticket.comments.exists? %>
+    <% @ticket.comments.each do |comment| %>
+      <% next if comment.new_record? %>
+      <div class="card card-body bg-light col-sm-6">
+        <%= render 'comments/comment', comment: comment %>
+      </div>
+      <br>
+    <% end %>
+  <% else %>
+    <p>No comments available.</p><br>
+  <% end %>
+  <%= render 'comments/form', header: "Add a comment" %>
 </div>
 
 <br>

@@ -1,0 +1,18 @@
+<p class="lead"><%= header %></p>
+
+<%= form_with model: @comment, local: true, scope: 'comment', url: get_comment_form_url(@comment, @ticket)  do |f| %>
+  <%= render 'shared/errors', obj: @comment %>
+
+  <div class="form-group">
+    <%= f.label :body %>
+    <%= f.text_area :body, class: "col-sm-6 form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.fields_for @ticket do |ticket| %>
+      <%= ticket.label :status %>
+      <%= ticket.select :status, @statuses.collect {|s| [s, s]}, {selected: @ticket.status}, {class: 'form-control col-sm-3'} %>
+    <% end %>
+  </div>
+  <%= f.submit (@comment.new_record? ? "Add comment" : "Edit comment"), class: "btn btn-success" %>
+
+<% end %>
