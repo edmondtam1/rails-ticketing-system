@@ -1,0 +1,15 @@
+<%= form_tag tickets_path, method: :get, enforce_utf8: false do %>
+  <p>
+    Show tickets from 
+    <%= select_tag :project, options_from_collection_for_select(Project.all, :id, :name, params[:project]), include_blank: "All Projects" %> 
+    with status
+    <%= select_tag :status, options_for_select(Ticket::STATUSES.map{|t| [t.titleize, t]}, params[:status]), include_blank: "Any Status" %>
+    tagged
+    <%= select_tag :tag, options_from_collection_for_select(Tag.alphabetical, :id, :name, params[:tag]), include_blank: "-" %>
+
+    <%= button_tag "Update", name: nil %>
+    <span class="reset">
+      <%= link_to "Clear Filters", tickets_path %>
+    </p>
+  </p>
+<% end %>

@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :set_ticket, :set_statuses, :require_same_user
+  before_action :set_ticket, :require_same_user
   before_action :set_comment, only: [:edit, :update]
 
   def create
@@ -44,7 +44,7 @@ class CommentsController < ApplicationController
   def require_same_user
     if current_user != @ticket.creator
       flash[:error] = "You're not allowed to do that."
-      redirect_to root_path
+      redirect_back fallback_location: root_path
     end
   end
 end

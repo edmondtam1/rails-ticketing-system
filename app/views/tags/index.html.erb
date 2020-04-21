@@ -2,29 +2,35 @@
 
 <br>
 
-<table class="span12 container">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th class="number text-center">Tickets</th>
-      <th></th>
-    </tr>
-  </thead>
-  <% @tags.each do |tag| %>
-    <tr>
-      <td class="col-sm-7 text-left pl-0">
-        <%= tag.name.capitalize %>
-      </td>
-      <td class="number col-sm-2 text-center">
-        <%= link_to tag.tickets.length %>
-      </td>
-      <td class="number col-sm-3 text-center">
-        <%= link_to 'Edit', edit_tag_path(tag) %> <%= link_to 'Delete', tag_path(tag), method: :delete, data: { confirm: "Are you sure?" } %>
-      </td>
-    </tr>
-  <% end %>
-</table>
+<% if Tag.first %>
 
-<br>
+  <table class="span12 container">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th class="number text-center">Tickets</th>
+        <th></th>
+      </tr>
+    </thead>
+    <% @tags.each do |tag| %>
+      <tr>
+        <td class="col-sm-7 text-left pl-0">
+          <%= tag.name.capitalize %>
+        </td>
+        <td class="number col-sm-2 text-center">
+          <%= link_to tag.tickets.length, tickets_path(tag: tag.id) %>
+        </td>
+        <td class="number col-sm-3 text-center">
+          <%= link_to 'Edit', edit_tag_path(tag) %> <%= link_to 'Delete', tag_path(tag), method: :delete, data: { confirm: "Are you sure?" } %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
 
-<%= link_to "Add new tag", new_tag_path %>
+  <br>
+
+  <%= link_to "Add new tag", new_tag_path %>
+
+<% else %>
+  <p>There are no tags currently. Would you like to <%= link_to "add one?", new_tag_path %></p>
+<% end %>

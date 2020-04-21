@@ -10,7 +10,7 @@
   <div class="form-group">
     <%= f.fields_for @ticket do |ticket| %>
       <%= ticket.label :status %>
-      <%= ticket.select :status, @statuses.collect {|s| [s, s]}, {selected: @ticket.status}, {class: 'form-control col-sm-3'} %>
+      <%= ticket.select :status, Ticket::STATUSES.map {|s| [s, s]}, {selected: @ticket.status, include_blank: "Do not change"}, {class: 'form-control col-sm-3'} %>
     <% end %>
   </div>
   <%= f.submit (@comment.new_record? ? "Add comment" : "Edit comment"), class: "btn btn-success" %>

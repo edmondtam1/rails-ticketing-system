@@ -1,17 +1,14 @@
 <%= render 'shared/content_title', title: 'Tickets' %>
 
 <div class="filter">
-  Show tickets from filters
+  <%= render 'search' %>
 </div>
-
 <br>
-
 <% if @tickets.length != 0 %>
   <%= render 'table' %>
+  <%= link_to "Add a new ticket", new_ticket_path %>
+<% elsif @tickets.length == 0 && request.query_string.present? %>
+  <p>There are no tickets for these filters. Would you like to <%= link_to 'add one?', new_ticket_path %></p>
 <% else %>
   <p>There are no tickets at the moment. Would you like to <%= link_to 'add one?', new_ticket_path %></p>
 <% end %>
-
-<br>
-
-<%= link_to "Add a new ticket", new_ticket_path %>

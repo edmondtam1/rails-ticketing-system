@@ -20,7 +20,7 @@
     <div class="col-sm-12">
       <% if @ticket.tags.length > 0 %>
         <strong>Tags: </strong>
-        <%= parse_tags(@ticket.tags) %>
+        <%= parse_tags(@ticket.tags.alphabetical) %>
       <% else %>
         No tags currently. Would you like to <%= link_to "add one?", new_tag_path(ticket: @ticket.id) %>
       <% end %>
