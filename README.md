@@ -1,24 +1,7 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a ticketing project using Rails and hosted on [Heroku](https://ticketing-app-et.herokuapp.com/).
 
-Things you may want to cover:
+Users can launch projects, and each project can have many tickets. These tickets come with a status and an assigned user. 
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+With these tickets, users are also able to make comments about the ticket, allowing different teams to collaborate with each other. Tickets can also be tagged to particular categories, allowing users to sort through different tickets easily.
