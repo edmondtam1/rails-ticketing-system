@@ -1,6 +1,6 @@
-# Project and ticketing management system
+# Project and ticketing management system :ticket:
 
-This is a ticketing project using Rails and hosted on [Heroku](https://ticketing-app-et.herokuapp.com/).
+This is a ticketing project using Rails and hosted on [Heroku](https://ticketing-app-et.herokuapp.com/). 
 
 Users can launch projects, and each project can have many tickets. These tickets come with a status and an assigned user. 
 
